@@ -16,10 +16,10 @@ This repository is a GeoData Management Information System that is developed wit
 
 ### Features
 
-- GeoJSON File Upload: Support GeoJson file upload with file format and contains validation
-- DB Seeding: Seed the project with initial user data
-- DB Migration: Apply databased changes when model/schema chages automatically via DB Migration
-- User Input Validation: Validate user input that utilize NestJS middleware and/or pipes
+- GeoJSON File Upload: Support GeoJson file upload with file type validation, implements Custom Pipe that validate uploaded files
+- DB Seeding: Seed the project with initial user data, using Sequelize features to ease the process of seeding
+- DB Migration: Apply databased changes when model/schema changes automatically via DB Migration using Sequelize migration tools
+- User Input Validation: Validate user inputs are valid geojson formatted files, utilizes NestJS middleware and/or pipes and implements Custom Pipe that validate uploaded file contents
 - GeoJson Data Processing: Uploaded GeoJson will be stored in uploaded files folder in the backend and store the data in the Database
 - Unit Testing: Automated unit tests based on Jest for positive and negative cases
 - Documentation: API Documentation with Swagger
@@ -27,7 +27,14 @@ This repository is a GeoData Management Information System that is developed wit
 - Authorization: Every authenticated users can read/view the data stored in the database, only those who is registered with admin role can create, update, and delete them
 - DB are constructed via Docker Compose, database will created automatically on initial run (see `./db/init.sql` to see the commands)
 
-## Installation
+## Installation and Running the Project
+
+Run following commands to install and setup locally (and start development)
+
+
+```bash
+$ cd [project root directory location]
+```
 
 ```bash
 $ docker compose up
@@ -38,14 +45,17 @@ $ npm install
 ```
 
 ```bash
+$ cp .env.sample .env
+```
+Ensure that variables defines the correct values
+
+```bash
 $ npx sequelize-cli db:migrate
 ```
 
 ```bash
-$ npx sequelize-cli db:seed
+$ npx sequelize-cli db:seed:all
 ```
-
-## Running the app
 
 ```bash
 # development
