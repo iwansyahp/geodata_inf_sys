@@ -11,4 +11,5 @@ export default (): any => ({
     pass: process.env.POSTGRES_PASSWORD,
   },
   jwt_secret: process.env.JWT_SECRET,
+  upload_folder: process.env.UPLOAD_FOLDER,
 });
