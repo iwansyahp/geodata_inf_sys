@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import { SWAGGER_ENDPOINT } from './common/constants/common.constant';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,7 +18,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup(SWAGGER_ENDPOINT, app, document);
 
   // start server
   await app.listen(3000);
