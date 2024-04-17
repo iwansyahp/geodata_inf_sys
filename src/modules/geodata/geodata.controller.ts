@@ -10,7 +10,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBody, ApiOperation } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiOperation } from '@nestjs/swagger';
 import { Public } from 'src/modules/auth/decorators/auth.decorator';
 
 import * as fs from 'fs';
@@ -19,7 +19,7 @@ import * as path from 'path';
 import * as gjv from 'geojson-validation';
 import { GeodataService } from './geodata.service';
 import { GeoJsonFileValidationPipe } from './pipes/geojson-file-validation/geojson-file-validation.pipe';
-import { GEO_JSON_EXTENSION } from './constants/geodata.constants';
+import { GEO_JSON_MIMETYPE } from './constants/geodata.constants';
 import { ConfigService } from '@nestjs/config';
 
 @Public() // TODO: remove when done
@@ -37,49 +37,29 @@ export class GeodataController {
   }
 
   // @Roles(Role.Admin)  // only admin can upload data file
-  @Post('/file')
-  @UsePipes(GeoJsonFileValidationPipe)
   @ApiOperation({ summary: 'Upload single GeoJSON file' })
-  @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
   @ApiBody({
     required: true,
     schema: {
       type: 'object',
       properties: {
-        files: {
-          type: 'array',
-          items: {
-            type: 'string',
-            format: 'binary',
-          },
+        file: {
+          type: 'string',
+          format: 'binary',
         },
       },
     },
   })
+  @Post('/file')
+  @UsePipes(GeoJsonFileValidationPipe)
+  @UseInterceptors(FileInterceptor('file'))
   multipleFile(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [
-          new FileTypeValidator({ fileType: GEO_JSON_EXTENSION[0] }),
-          new FileTypeValidator({ fileType: GEO_JSON_EXTENSION[1] }),
-          new GeoJsonFileValidationPipe(),
-        ],
-      }),
-    )
+    @UploadedFile()
     file: Express.Multer.File,
   ) {
     // Error handling array
     const errors = [];
-
-    if (
-      file.mimetype !== 'application/json' &&
-      file.mimetype !== 'application/geo+json'
-    ) {
-      errors.push({
-        filename: file.originalname,
-        error: 'File is not a GeoJSON',
-      });
-    }
 
     // Construct file path
     const uniqueSuffix = Date.now() + '-';
@@ -95,7 +75,7 @@ export class GeodataController {
 
       // TODO: Add validation via middleware
       // use gjv to validation given GeoJson
-      gjv.validate(filePath);
+      // gjv.validate(filePath);
 
       // // Additional validation for GeoJSON format
       const jsonData = JSON.parse(file.buffer.toString());

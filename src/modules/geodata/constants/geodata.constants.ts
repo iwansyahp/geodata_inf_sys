@@ -1,1 +1,1 @@
-export const GEO_JSON_EXTENSION = ['geojson', 'json'];
+export const GEO_JSON_MIMETYPE = ['application/geojson', 'application/json'];
