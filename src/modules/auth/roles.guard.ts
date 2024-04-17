@@ -27,7 +27,7 @@ export class RolesGuard implements CanActivate {
       return true;
     }
     throw new UnauthorizedException(
-      'Based on your current role, you are not authorized to perform this action.',
+      'Based on your role, you are not authorized to perform this action.',
     );
   }
 }
