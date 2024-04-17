@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { configModuleOptions } from './configs/module-options';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from 'src/modules/users/models/user.model';
 
 @Module({
   imports: [
@@ -18,8 +17,8 @@ import { User } from 'src/modules/users/models/user.model';
         database: configService.get<string>('database.name'),
         username: configService.get<string>('database.user'),
         password: configService.get<string>('database.pass'),
-        models: [User],
         debug: configService.get<string>('env') === 'development',
+        autoLoadModels: true,
       }),
     }),
   ],
