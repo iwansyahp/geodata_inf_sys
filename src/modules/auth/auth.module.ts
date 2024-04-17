@@ -7,6 +7,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthController } from './auth.controller';
 import { RolesGuard } from './roles.guard';
 import { CommonModule } from 'src/common/common.module';
+import { JWT_EXPIRATION } from './constants/auth.constant';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { CommonModule } from 'src/common/common.module';
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '240s' },
+      signOptions: { expiresIn: JWT_EXPIRATION },
     }),
   ],
   providers: [

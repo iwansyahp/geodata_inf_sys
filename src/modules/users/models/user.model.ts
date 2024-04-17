@@ -1,5 +1,5 @@
 import { Column, Model, Table } from 'sequelize-typescript';
-import { Role } from 'src/modules/auth/constants/role.constant';
+import { Role } from 'src/modules/auth/constants/auth.constant';
 @Table({ tableName: 'users' })
 export class User extends Model<User> {
   @Column

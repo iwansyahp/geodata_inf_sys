@@ -5,7 +5,7 @@ import { User } from './models/user.model';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/sequelize';
 import { mapUserToResponse } from './utils/user_mapper';
-import { Role } from '../auth/constants/role.constant';
+import { Role } from '../auth/constants/auth.constant';
 
 @Injectable()
 export class UsersService {
