@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Request } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/user.dto';
 import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
-import { Roles } from 'src/modules/auth/decorators/auth.decorator';
+import { Roles } from '../../modules/auth/decorators/auth.decorator';
 import { Role } from '../auth/constants/auth.constant';
 
 @ApiBearerAuth()
