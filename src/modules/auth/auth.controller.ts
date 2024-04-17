@@ -14,8 +14,10 @@ export class AuthController {
     status: 200,
     description: 'Login endpoint for user, successfull login returns JWT',
   })
-  logIn(@Body() loginDto: LoginDto) {
-    return this.authService.logIn(loginDto.username, loginDto.password);
+  async logIn(@Body() loginDto: LoginDto) {
+    return {
+      data: await this.authService.logIn(loginDto.username, loginDto.password),
+    };
   }
 
   @ApiResponse({
@@ -25,6 +27,6 @@ export class AuthController {
   @ApiBearerAuth()
   @Get('/current_user')
   getUser(@Request() req) {
-    return req.user;
+    return { data: req.user };
   }
 }

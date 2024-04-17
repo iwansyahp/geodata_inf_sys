@@ -15,7 +15,7 @@ async function bootstrap() {
     .setTitle('GeoData API')
     .setDescription('GeoData API Documentation')
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth() // comment this line if jwt not injected when calling endpoint via Swagger UI
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(SWAGGER_ENDPOINT, app, document);
