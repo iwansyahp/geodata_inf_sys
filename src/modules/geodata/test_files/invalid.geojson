@@ -1,0 +1,15 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "InvalidGeometryType",
+          "coordinates": [102.0, 0.5]
+        },
+        "properties": {
+          "prop0": "value0"
+        }
+      }
+    ]
+  }
