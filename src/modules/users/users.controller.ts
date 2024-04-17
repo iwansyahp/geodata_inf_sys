@@ -3,7 +3,7 @@ import { Role } from 'src/enums/role.enum';
 import { UsersService } from './users.service';
 import { CreateUserDto, GetUserInfoResponse } from './dto/user.dto';
 import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
-import { Roles } from 'src/auth/decorators/role.decorators';
+import { Roles } from 'src/modules/auth/decorators/role.decorators';
 
 @ApiBearerAuth()
 @Controller('users')

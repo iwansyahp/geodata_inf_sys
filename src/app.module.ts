@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from './auth/auth.guard';
-import { User } from './users/models/user.model';
+import { AuthGuard } from './modules/auth/auth.guard';
+import { User } from './modules/users/models/user.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { GeodataModule } from './geodata/geodata.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { GeodataModule } from './geodata/geodata.module';
     AuthModule,
     UsersModule,
     GeodataModule,
+    CommonModule,
   ],
   providers: [
     {

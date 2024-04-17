@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiOperation } from '@nestjs/swagger';
-import { Public } from 'src/auth/decorators/auth.decorator';
+import { Public } from 'src/modules/auth/decorators/auth.decorator';
 
 import * as fs from 'fs';
 import * as path from 'path';
