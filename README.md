@@ -54,6 +54,10 @@ $ cp .env.sample .env
 ```
 Ensure that variables defines the correct values
 
+```bash
+$ mkdir uploads # if you are on Linux or Mac
+```
+
 Create tables
 ```bash
 $ npx sequelize-cli db:migrate
@@ -71,15 +75,16 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-Following users created during DB seeding:
-1. Username: `admin`, Password: `admin`
-1. Username: `user`, Password: `user`
-
 # production mode
 $ npm run start:prod
 ```
 
-Auto generated documentation can be accessed in [this link](http://localhost:3000/docs).
+Following users created during DB seeding in development environment:
+
+1. Username: `admin`, Password: `admin`
+1. Username: `user`, Password: `user`
+
+Auto generated documentation can be accessed in http://localhost:3000/docs.
 
 ## Test
 
