@@ -17,5 +17,6 @@ export const configModuleOptions: ConfigModuleOptions = {
     POSTGRES_DB: Joi.string().required(),
     POSTGRES_USER: Joi.string().required(),
     JWT_SECRET: Joi.string().required(),
+    UPLOAD_FOLDER: Joi.string().required(),
   }),
 };
