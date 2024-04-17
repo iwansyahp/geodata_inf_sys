@@ -1,12 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto, GetUserInfoResponse } from './dto/user.dto';
-import { Role } from 'src/enums/role.enum';
 import { User } from './models/user.model';
 
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/sequelize';
-import { mapUserToResponse } from './mappers/user_mapper';
-import user from 'models/user';
+import { mapUserToResponse } from './utils/user_mapper';
+import { Role } from '../auth/constants/role.constant';
 
 @Injectable()
 export class UsersService {

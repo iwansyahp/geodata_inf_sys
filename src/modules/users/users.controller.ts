@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, Request } from '@nestjs/common';
-import { Role } from 'src/enums/role.enum';
 import { UsersService } from './users.service';
 import { CreateUserDto, GetUserInfoResponse } from './dto/user.dto';
 import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { Roles } from 'src/modules/auth/decorators/role.decorators';
+import { Role } from '../auth/constants/role.constant';
 
 @ApiBearerAuth()
 @Controller('users')

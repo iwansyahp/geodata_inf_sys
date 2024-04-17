@@ -1,6 +1,5 @@
 import { Column, Model, Table } from 'sequelize-typescript';
-import { Role } from 'src/enums/role.enum';
-
+import { Role } from 'src/modules/auth/constants/role.constant';
 @Table({ tableName: 'users' })
 export class User extends Model<User> {
   @Column
@@ -14,5 +13,5 @@ export class User extends Model<User> {
 
   @Column
   password: string;
-    created_at: any;
+  created_at: any;
 }
