@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Request,
   UploadedFile,
   UseInterceptors,
   UsePipes,
@@ -13,7 +14,7 @@ import {
   ApiConsumes,
   ApiOperation,
 } from '@nestjs/swagger';
-import { Roles } from 'src/modules/auth/decorators/auth.decorator';
+import { Roles } from '../../modules/auth/decorators/auth.decorator';
 
 import { GeodataService } from './geodata.service';
 import { GeoJsonFileValidationPipe } from './pipes/geojson-file-validation/geojson-file-validation.pipe';
@@ -49,6 +50,7 @@ export class GeodataController {
   @UsePipes(GeoJsonFileValidationPipe)
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
+    @Request() req,
     @UploadedFile()
     file: Express.Multer.File,
   ) {
