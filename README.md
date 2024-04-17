@@ -58,6 +58,8 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+Auto generated documentation can be accessed in [this link](http://localhost:3000/docs).
+
 ## Test
 
 ```bash
